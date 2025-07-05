@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Appu Nayak - Sr. Designer & Visualizer | Creative Portfolio</title>
+    <meta name="description" content="The professional portfolio of Appu Nayak, a Senior Designer and Visualizer specializing in brand identity, UI/UX design, and creative direction. Explore selected works and get in touch for collaboration.">
+    <meta name="keywords" content="graphic designer, visualizer, UI/UX designer, branding, portfolio, web design, creative direction, freelance designer">
+    <meta name="author" content="Appu Nayak">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="Appu Nayak - Sr. Designer & Visualizer | Creative Portfolio">
+    <meta property="og:description" content="Award-winning senior graphic designer with 15+ years of experience in branding, packaging, brochures, and print design. Available for freelance & agency work.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?q=80&w=1200&h=630&fit=crop">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:title" content="Appu Nayak - Sr. Designer & Visualizer | Creative Portfolio">
+    <meta property="twitter:description" content="Award-winning senior graphic designer with 15+ years of experience in branding, packaging, brochures, and print design. Available for freelance & agency work.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?q=80&w=1200&h=600&fit=crop">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .hero-bg {
+            background-color: #f8f9fa;
+            background-image:
+                linear-gradient(rgba(128, 128, 128, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(128, 128, 128, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            background-image: 
+                radial-gradient(at 20% 20%, hsla(340, 80%, 85%, 0.5) 0px, transparent 50%),
+                radial-gradient(at 80% 70%, hsla(200, 80%, 80%, 0.5) 0px, transparent 50%);
+            filter: blur(100px);
+            z-index: 1;
+        }
+        .content-wrapper, .section-bg > .container {
+            position: relative;
+            z-index: 2;
+        }
+        .modal-bg {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .stat-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+         .header-scrolled {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .contact-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .contact-card:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        .service-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 2;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .work-item {
+            overflow: hidden;
+            border-radius: 1rem;
+            z-index: 2;
+            background-color: #f0f2f5;
+        }
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease-out, opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+        .work-item img.loaded {
+            opacity: 1;
+        }
+        .work-item:hover img.loaded {
+            transform: scale(1.05);
+        }
+        .section-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        .section-bg::before {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            width: 50vw;
+            height: 50vw;
+            max-width: 600px;
+            max-height: 600px;
+            filter: blur(150px);
+        }
+        .about-bg::before {
+            background: radial-gradient(circle, hsla(340, 80%, 85%, 0.6) 0, transparent 70%);
+            top: -10%;
+            right: -20%;
+        }
+        .services-bg::before {
+            background: radial-gradient(circle, hsla(200, 80%, 80%, 0.6) 0, transparent 70%);
+            bottom: -20%;
+            left: -20%;
+        }
+        .work-bg::before {
+             background: radial-gradient(circle, hsla(340, 80%, 85%, 0.5) 0, transparent 70%);
+             top: 5%;
+             right: -25%;
+        }
+        /* For GSAP animations */
+        .gsap-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        /* Lightbox styles */
+        #lightbox-prev, #lightbox-next {
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        #lightbox-prev:hover, #lightbox-next:hover {
+            background-color: rgba(0,0,0,0.6);
+        }
+    </style>
+
+    <!-- JSON-LD Structured Data for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Appu Nayak",
+      "url": "https://your-domain.com",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2488&auto=format&fit=crop",
+      "jobTitle": "Senior Designer & Visualizer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Appu Nayak Design"
+      },
+      "sameAs": [
+        "https://wa.me/911234567890"
+      ],
+      "email": "mailto:hello@yourmail.com",
+      "description": "Senior Designer and Visualizer specializing in brand identity, UI/UX, and creative direction. Crafting visual experiences that resonate and build brands.",
+      "knowsAbout": ["Brand Identity & Logo Design", "Packaging Design & Mockups", "Campaign & Art Direction", "Visual Branding & Marketing Collateral",],
+      "hasOffer": {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Graphic Design Services",
+          "serviceType": "Graphic Design",
+          "provider": {
+            "@type": "Person",
+            "name": "Appu Nayak"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Worldwide"
+          }
+        }
+      }
+    }
+    </script>
+</head>
+<body class="text-slate-800">
+    <div data-scroll-container>
+        <!-- Header -->
+        <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-24">
+                    <a href="#" class="flex items-center gap-2 text-2xl font-bold text-slate-800">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 30C12.7614 30 15 27.7614 15 25C15 22.2386 12.7614 20 10 20C7.23858 20 5 22.2386 5 25C5 27.7614 7.23858 30 10 30Z" fill="#818CF8"/>
+                            <path d="M22.5 12.5C25.2614 12.5 27.5 10.2614 27.5 7.5C27.5 4.73858 25.2614 2.5 22.5 2.5C19.7386 2.5 17.5 4.73858 17.5 7.5C17.5 10.2614 19.7386 12.5 22.5 12.5Z" fill="#A78BFA"/>
+                        </svg>
+                        <span>Appu Nayak.</span>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a href="#work" data-scroll-to class="text-slate-600 hover:text-indigo-500 transition-colors font-medium">WORK</a>
+                        <a href="#services" data-scroll-to class="text-slate-600 hover:text-indigo-500 transition-colors font-medium">SERVICES</a>
+                        <a href="#contact" data-scroll-to class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-5 rounded-full transition-colors">Contact Us</a>
+                    </nav>
+                    <button id="mobile-menu-button" class="md:hidden text-slate-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden fixed top-0 left-0 w-full h-full bg-white z-40">
+            <div class="flex flex-col items-center justify-center h-full space-y-8">
+                 <a href="#work" data-scroll-to class="text-slate-800 text-2xl hover:text-indigo-500 transition-colors mobile-menu-link">WORK</a>
+                 <a href="#services" data-scroll-to class="text-slate-800 text-2xl hover:text-indigo-500 transition-colors mobile-menu-link">SERVICES</a>
+                 <a href="#contact" data-scroll-to class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-3 px-6 rounded-full transition-colors mobile-menu-link">Contact Us</a>
+            </div>
+        </div>
+
+        <main>
+            <!-- Hero Section -->
+            <section id="home" data-scroll-section class="min-h-screen flex items-center pt-24 hero-bg">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 content-wrapper">
+                    <div class="max-w-7xl mx-auto">
+                        <h1 id="hero-title" class="animated-heading text-6xl md:text-8xl lg:text-9xl font-black text-slate-800 leading-none gsap-fade-in">
+                            Sr. Designer &<br>Visualizer
+                        </h1>
+                        <p id="hero-subtitle" class="mt-6 text-xl text-slate-600 max-w-2xl gsap-fade-in">
+                            I craft visual experiences that resonate. Through strategic branding and impactful design, I help brands tell their unique story and connect with their audience on a deeper level.
+                        </p>
+                        <div id="hero-grid" class="mt-16 grid md:grid-cols-3 gap-8 items-start gsap-fade-in">
+                            <div class="md:col-span-2">
+                                <h3 class="text-lg font-semibold text-slate-800 mb-4">KEY SERVICES</h3>
+                                <div class="grid sm:grid-cols-2 gap-x-8 gap-y-4 text-slate-600">
+                                    <div class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Brand Identity & Logo Design</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Packaging Design & Mockups</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Campaign & Art Direction</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Visual Branding & Marketing Collateral</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-card p-6 text-center">
+                                <p class="text-7xl font-black text-indigo-500">100+</p>
+                                <p class="text-slate-600 mt-2 mb-4 font-medium">Successful Projects</p>
+                                <a href="#work" data-scroll-to class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-3 px-6 rounded-full transition-colors w-full block text-lg">
+                                    See My Work
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" data-scroll-section class="py-20 lg:py-32 bg-slate-50 section-bg about-bg">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="gsap-fade-in">
+                            <a href="#about" class="inline-block border border-slate-300 text-slate-600 rounded-full px-5 py-2 mb-8 hover:bg-white transition">About Me</a>
+                            <h2 class="animated-heading text-5xl md:text-6xl font-black text-slate-800 mb-8">More Than a Designer</h2>
+                            <p class="text-lg text-slate-600 max-w-3xl mb-12">
+                                Hello! I'm Appu Nayak, a passionate and detail-oriented graphics designer with  11+ years of experience in creating compelling visual identities for a diverse range of clients. My design philosophy is centered around simplicity, clarity, and purpose. I believe great design is not just about aesthetics, but about solving problems and communicating effectively.
+                            </p>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-8 text-center">
+                            <div class="stat-card p-6 gsap-fade-in">
+                                <p class="text-5xl font-black text-indigo-500">11+</p>
+                                <p class="text-slate-600 mt-2">Years Experience</p>
+                            </div>
+                            <div class="stat-card p-6 gsap-fade-in" style="--delay: 0.1s">
+                                <p class="text-5xl font-black text-indigo-500">100+</p>
+                                <p class="text-slate-600 mt-2">Brands Shaped</p>
+                            </div>
+                            <div class="stat-card p-6 gsap-fade-in" style="--delay: 0.2s">
+                                <p class="text-5xl font-black text-indigo-500">∞</p>
+                                <p class="text-slate-600 mt-2">Countless Ideas</p>
+                            </div>
+                        </div>
+                         <div class="mt-12 text-center max-w-3xl mx-auto gsap-fade-in">
+                            <p class="text-xl text-slate-700">From pixels to purpose — I bring visions to life with sharp design thinking and bold visuals.</p>
+                            <p class="text-xl text-slate-700 mt-2 font-semibold">Driven by detail. Inspired by impact.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- What I Do Section -->
+            <section id="services" data-scroll-section class="py-20 lg:py-32 bg-slate-50 section-bg services-bg">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 gsap-fade-in">
+                        <h2 class="animated-heading  text-3xl lg:text-4xl font-bold text-slate-800 mb-4">What I Do</h2>
+                        <p class="text-lg max-w-2xl mx-auto text-slate-600">I offer a complete suite of design services to build and elevate your brand.</p>
+                    </div>
+                    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+                        <div class="service-card p-8 rounded-2xl flex items-start gap-6 gsap-fade-in">
+                            <div class="bg-indigo-100 text-indigo-600 p-4 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2"> Brand Identity & Logo Design</h3>
+                                <p class="text-slate-600">Crafting distinct logos and brand systems that reflect your values, stand out in the market, and stay memorable.</p>
+                            </div>
+                        </div>
+                        <div class="service-card p-8 rounded-2xl flex items-start gap-6 gsap-fade-in" style="--delay: 0.1s">
+                            <div class="bg-purple-100 text-purple-600 p-4 rounded-full">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Packaging Design & Mockups</h3>
+                                <p class="text-slate-600">Designing eye-catching, retail-ready packaging that not only looks great but enhances product appeal and shelf presence..</p>
+                            </div>
+                        </div>
+                        <div class="service-card p-8 rounded-2xl flex items-start gap-6 gsap-fade-in" style="--delay: 0.2s">
+                            <div class="bg-sky-100 text-sky-600 p-4 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Campaign & Art Direction</h3>
+                                <p class="text-slate-600">Building visual narratives and guiding creative direction across print and digital campaigns — from concept to execution.</p>
+                            </div>
+                        </div>
+                        <div class="service-card p-8 rounded-2xl flex items-start gap-6 gsap-fade-in" style="--delay: 0.3s">
+                            <div class="bg-emerald-100 text-emerald-600 p-4 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Visual Branding & Marketing Collateral</h3>
+                                <p class="text-slate-600">Delivering cohesive design assets like brochures, posters, and brand decks that maintain consistency across all touchpoints.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Work Section -->
+            <section id="work" data-scroll-section class="py-20 lg:py-32 bg-slate-50 section-bg work-bg">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12 gsap-fade-in">
+                        <h2 class="animated-heading  text-3xl lg:text-4xl font-bold text-slate-800 mb-4">A Glimpse of My Work</h2>
+                        <p class="text-lg max-w-2xl mx-auto text-slate-600">Designs that spoke louder than words. Here’s a peek.</p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3  gap-4 md:gap-6 work-col">
+                        <div class="group relative cursor-pointer work-item  " onclick="openModal(1)">
+                            <img data-src="./assets/img/creatives/Brochure 4.jpg" alt="Brochure Design" class="lazy-img">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-end p-6">
+                                <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-y-0 translate-y-4">
+                                    <h3 class="text-xl font-bold">Brochure Design</h3><p class="text-sm">Turning pages into experiences that inform and inspire.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group relative cursor-pointer work-item " onclick="openModal(2)">
+                            <img data-src="./assets/img/creatives/Branding 6.jpg" alt="Branding & Identity" class="lazy-img">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-end p-6">
+                                <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-y-0 translate-y-4">
+                                    <h3 class="text-xl font-bold">Branding & Identity</h3><p class="text-sm">Building visual systems that speak your brand’s soul.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="group relative cursor-pointer work-item " onclick="openModal(3)">
+                            <img data-src="./assets/img/creatives/Packaging 1.jpg" alt="Packaging Design" class="lazy-img">
+                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-end p-6">
+                                <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-y-0 translate-y-4">
+                                    <h3 class="text-xl font-bold">Packaging Design</h3><p class="text-sm">Creating shelf-ready designs that stand out and sell fast.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group relative cursor-pointer work-item" onclick="openModal(4)">
+                            <img data-src="./assets/img/creatives/Post 1.jpg" alt="Posts Design" class="lazy-img">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-end p-6">
+                                <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-y-0 translate-y-4">
+                                    <h3 class="text-xl font-bold">Posts Design</h3><p class="text-sm">Scroll-stopping designs crafted for digital storytelling.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group relative cursor-pointer work-item" onclick="openModal(5)">
+                            <img data-src="./assets/img/creatives/Poster 1.jpg" alt="Poster Design" class="lazy-img">
+                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-end p-6">
+                                <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-y-0 translate-y-4">
+                                    <h3 class="text-xl font-bold">Poster Design</h3><p class="text-sm">Bold visuals that grab attention and make messages stick.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="group relative cursor-pointer work-item" onclick="openModal(6)">
+                            <img data-src="./assets/img/creatives/Print AD 01.jpg" alt="Print" class="lazy-img">
+                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-end p-6">
+                                <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-y-0 translate-y-4">
+                                    <h3 class="text-lg font-bold">Print</h3> <p class="text-sm">Sharp, clear layouts that deliver impact in print.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+           <!-- Contact Section -->
+            <section id="contact" data-scroll-section class="py-20 lg:py-32 bg-slate-800 text-white">
+                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="gsap-fade-in">
+                            <h2 class="animated-heading text-4xl lg:text-5xl font-bold mb-4">Let’s make something unforgettable.</h2>
+                            <p class="text-lg text-slate-300 mb-8">Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+                            <div class="space-y-6">
+                                <a href="mailto:appunayak786@gmail.com" class="flex items-center gap-4 p-4 rounded-lg contact-info-item">
+                                    <div class="bg-indigo-500 p-3 rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-lg">Email Me</p>
+                                        <p class="text-slate-400">appunayak786@gmail.com</p>
+                                    </div>
+                                </a>
+                                <a href="https://wa.me/919826578755" target="_blank" class="flex items-center gap-4 p-4 rounded-lg contact-info-item">
+                                    <div class="bg-indigo-500 text-white p-3 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0,0,256,256">
+                                        <g fill="#ffffff" fill-rule="evenodd" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8,8)"><path d="M24.50391,7.50391c-2.25781,-2.25781 -5.25781,-3.50391 -8.45312,-3.50391c-6.58594,0 -11.94922,5.35938 -11.94922,11.94531c-0.00391,2.10547 0.54688,4.16016 1.59375,5.97266l-1.69531,6.19141l6.33594,-1.66406c1.74219,0.95313 3.71094,1.45313 5.71094,1.45703h0.00391c6.58594,0 11.94531,-5.35937 11.94922,-11.94922c0,-3.19141 -1.24219,-6.19141 -3.49609,-8.44922zM16.05078,25.88281h-0.00391c-1.78125,0 -3.53125,-0.48047 -5.05469,-1.38281l-0.36328,-0.21484l-3.76172,0.98438l1.00391,-3.66406l-0.23437,-0.375c-0.99609,-1.58203 -1.51953,-3.41016 -1.51953,-5.28516c0,-5.47266 4.45703,-9.92578 9.9375,-9.92578c2.65234,0 5.14453,1.03516 7.01953,2.91016c1.875,1.87891 2.90625,4.37109 2.90625,7.02344c0,5.47656 -4.45703,9.92969 -9.92969,9.92969zM21.49609,18.44531c-0.29687,-0.14844 -1.76562,-0.87109 -2.03906,-0.96875c-0.27344,-0.10156 -0.47266,-0.14844 -0.67187,0.14844c-0.19922,0.30078 -0.76953,0.97266 -0.94531,1.17188c-0.17187,0.19531 -0.34766,0.22266 -0.64453,0.07422c-0.30078,-0.14844 -1.26172,-0.46484 -2.40234,-1.48437c-0.88672,-0.78906 -1.48828,-1.76953 -1.66016,-2.06641c-0.17578,-0.30078 -0.01953,-0.46094 0.12891,-0.60937c0.13672,-0.13281 0.30078,-0.34766 0.44922,-0.52344c0.14844,-0.17187 0.19922,-0.29687 0.30078,-0.49609c0.09766,-0.19922 0.04688,-0.375 -0.02734,-0.52344c-0.07422,-0.14844 -0.67187,-1.62109 -0.92187,-2.21875c-0.24219,-0.58203 -0.48828,-0.5 -0.67187,-0.51172c-0.17187,-0.00781 -0.37109,-0.00781 -0.57031,-0.00781c-0.19922,0 -0.52344,0.07422 -0.79687,0.375c-0.27344,0.29688 -1.04297,1.01953 -1.04297,2.48828c0,1.46875 1.07031,2.89063 1.21875,3.08984c0.14844,0.19531 2.10547,3.21094 5.10156,4.50391c0.71094,0.30859 1.26563,0.49219 1.69922,0.62891c0.71484,0.22656 1.36719,0.19531 1.88281,0.12109c0.57422,-0.08594 1.76563,-0.72266 2.01563,-1.42187c0.24609,-0.69531 0.24609,-1.29297 0.17188,-1.41797c-0.07422,-0.125 -0.27344,-0.19922 -0.57422,-0.35156z"></path></g></g>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-lg">WhatsApp</p>
+                                        <p class="text-slate-400">+91 98265 78755</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hidden md:block gsap-fade-in" style="--delay: 0.2s">
+                            <svg id="contact-illustration" width="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color: #818cf8; stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color: #a78bfa; stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <circle id="contact-circle-1" cx="200" cy="200" r="180" fill="none" stroke="url(#grad1)" stroke-width="2" opacity="0.3"/>
+                                <circle id="contact-circle-2" cx="200" cy="200" r="140" fill="none" stroke="url(#grad1)" stroke-width="2" opacity="0.4" stroke-dasharray="10 10"/>
+                                <circle id="contact-circle-3" cx="200" cy="200" r="100" fill="url(#grad1)" opacity="0.1"/>
+                                <circle id="contact-circle-4" cx="150" cy="150" r="20" fill="url(#grad1)" opacity="0.5"/>
+                                <circle id="contact-circle-5" cx="250" cy="250" r="30" fill="url(#grad1)" opacity="0.4"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer data-scroll-section class="bg-slate-50 text-slate-500 py-8">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <p>&copy; 2025 Appu Nayak. All Rights Reserved.</p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Portfolio Modal -->
+    <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-bg">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative" data-scroll-lock-scrollable>
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 z-10">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div id="modal-content" class="p-6 md:p-8 lg:p-12"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white text-4xl opacity-80 hover:opacity-100">&times;</button>
+        <button id="lightbox-prev" class="absolute left-6 top-1/2 -translate-y-1/2 text-white text-4xl opacity-80 hover:opacity-100">&#10094;</button>
+        <button id="lightbox-next" class="absolute right-6 top-1/2 -translate-y-1/2 text-white text-4xl opacity-80 hover:opacity-100">&#10095;</button>
+        <div class="max-w-4xl max-h-[80vh] p-4">
+            <img id="lightbox-img" src="" alt="Lightbox image" class="max-w-full max-h-full object-contain">
+        </div>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+  <script>
+        // --- Locomotive Scroll & GSAP Integration ---
+        gsap.registerPlugin(ScrollTrigger);
+        const header = document.getElementById('header');
+
+        const locoScroll = new LocomotiveScroll({
+            el: document.querySelector("[data-scroll-container]"),
+            smooth: true,
+            tablet: { smooth: true },
+            smartphone: { smooth: true }
+        });
+
+        locoScroll.on("scroll", (instance) => {
+            ScrollTrigger.update();
+            // Header Style on Scroll
+            if (instance.scroll.y > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        ScrollTrigger.scrollerProxy("[data-scroll-container]", {
+            scrollTop(value) {
+                return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
+            },
+            getBoundingClientRect() {
+                return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
+            },
+            pinType: document.querySelector("[data-scroll-container]").style.transform ? "transform" : "fixed"
+        });
+
+        // --- Animations ---
+        document.addEventListener("DOMContentLoaded", () => {
+            // Animated Headings
+            const headings = gsap.utils.toArray('.animated-heading');
+            headings.forEach(heading => {
+                const split = new SplitType(heading, { types: 'words, chars' });
+                gsap.from(split.chars, {
+                    scrollTrigger: {
+                        trigger: heading,
+                        scroller: "[data-scroll-container]",
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    autoAlpha: 0,
+                    y: 30,
+                    stagger: 0.03,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                });
+            });
+
+            // Hero Animation (now using the same logic)
+            const heroTitle = document.getElementById('hero-title');
+            if (heroTitle) {
+                 const splitHero = new SplitType(heroTitle, { types: 'words, chars' });
+                 gsap.from(splitHero.chars, {
+                    autoAlpha: 0,
+                    y: 30,
+                    stagger: 0.03,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    delay: 0.3
+                });
+            }
+            gsap.to("#hero-subtitle", { autoAlpha: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.6 });
+            gsap.to("#hero-grid", { autoAlpha: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.8 });
+
+             // Contact section SVG animation
+            const contactIllustration = document.getElementById('contact-illustration');
+            if(contactIllustration) {
+                gsap.to("#contact-circle-1", { attr: { r: 170 }, yoyo: true, repeat: -1, duration: 4, ease: "power1.inOut" });
+                gsap.to("#contact-circle-2", { rotation: 360, transformOrigin: "center center", repeat: -1, duration: 20, ease: "none" });
+                gsap.to("#contact-circle-3", { attr: { r: 110 }, yoyo: true, repeat: -1, duration: 5, ease: "power1.inOut" });
+                gsap.to("#contact-circle-4", { x: 10, y: -15, yoyo: true, repeat: -1, duration: 6, ease: "sine.inOut" });
+                gsap.to("#contact-circle-5", { x: -10, y: 10, yoyo: true, repeat: -1, duration: 8, ease: "sine.inOut" });
+            }
+        });
+
+        const sections = gsap.utils.toArray('.gsap-fade-in');
+        sections.forEach((section) => {
+            gsap.fromTo(section, 
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        scroller: "[data-scroll-container]",
+                        start: 'top 85%',
+                        end: 'bottom top',
+                        toggleActions: 'play none none none',
+                    }
+                }
+            );
+        });
+        
+        const workCols = gsap.utils.toArray('.work-col');
+        workCols.forEach((col) => {
+             gsap.fromTo(col.children,
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: col,
+                        scroller: "[data-scroll-container]",
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    }
+                }
+            );
+        });
+
+        // --- Lazy Loading Images ---
+        const lazyImages = gsap.utils.toArray('.lazy-img');
+        lazyImages.forEach(img => {
+            ScrollTrigger.create({
+                trigger: img,
+                scroller: "[data-scroll-container]",
+                start: "top 90%",
+                once: true,
+                onEnter: () => {
+                    const originalSrc = img.dataset.src;
+                    if (originalSrc) {
+                        img.src = originalSrc;
+                        img.onload = () => {
+                            img.classList.add('loaded');
+                            locoScroll.update();
+                        }
+                    }
+                }
+            });
+        });
+
+        // --- Mobile Menu ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                mobileMenu.classList.add('hidden');
+                const targetId = link.getAttribute('href');
+                locoScroll.scrollTo(targetId);
+            });
+        });
+        
+        // --- Update ScrollTrigger on viewport resize ---
+        ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+        ScrollTrigger.refresh();
+
+
+        // --- Portfolio Modal & Lightbox ---
+        const portfolioModal = document.getElementById('portfolio-modal');
+        const modalContent = document.getElementById('modal-content');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        let currentProjectImages = [];
+        let currentImageIndex = 0;
+
+        const portfolioItems = {
+            1: { title: 'Brochure Design ', category: 'Turning pages into experiences that inform and inspire.', description: '', images: [1,2,3,4,5,6].map(i => `./assets/img/creatives/Brochure ${i}.jpg` )},
+            2: { title: 'Branding & Identity', category: 'Building visual systems that speak your brand’s soul.', description: '', images: ["",2,3,4,5,6].map(i => `./assets/img/creatives/Branding${i ===""? "": " "+i }.jpg` )},
+            3: { title: 'Packaging Design', category: 'Creating shelf-ready designs that stand out and sell fast.', description: '', images: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map(i => `./assets/img/creatives/Packaging ${i}.jpg` )},
+            4: { title: 'Posts Design', category: 'Scroll-stopping designs crafted for digital storytelling.', description: '', images:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(i => `./assets/img/creatives/Post ${i}.jpg` ) },
+            5: { title: 'Poster Design', category: 'Bold visuals that grab attention and make messages stick.', description: '', images: [1,2,3,4,"05","06","07","08","09",10,11,12,13,14,15,16,17,18,19,20,21,22].map(i => `./assets/img/creatives/Poster ${i}.jpg` )},
+            6: { title: 'Print', category: 'Sharp, clear layouts that deliver impact in print.', description: '', images: ["01","02","03","04","05","06","07","08","09",10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35].map(i => `./assets/img/creatives/Print AD ${i}.jpg` )}
+        };
+
+        function openModal(projectId) {
+            const item = portfolioItems[projectId];
+            if (!item) return;
+
+            let imageGridHTML = item.images.map((imgSrc, index) => `
+                <div class="cursor-pointer group work-item" onclick="openLightbox(${projectId}, ${index})">
+                    <img src="${imgSrc}" class="w-full h-full object-cover rounded-lg group-hover:opacity-80 transition-opacity loaded">
+                </div>
+            `).join('');
+
+            modalContent.innerHTML = `
+                <h3 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">${item.title}</h3>
+                <p class="text-indigo-500 font-semibold mb-4">${item.category}</p>
+                <p class="text-slate-600 text-lg mb-8">${item.description}</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    ${imageGridHTML}
+                </div>
+            `;
+            portfolioModal.classList.remove('hidden');
+            portfolioModal.classList.add('flex');
+            locoScroll.stop();
+        }
+
+        function closeModal() {
+            portfolioModal.classList.add('hidden');
+            portfolioModal.classList.remove('flex');
+            locoScroll.start();
+        }
+
+        function openLightbox(projectId, imgIndex) {
+            currentProjectImages = portfolioItems[projectId].images;
+            currentImageIndex = imgIndex;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            showImage(currentImageIndex);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+        }
+
+        function showImage(index) {
+            currentImageIndex = (index + currentProjectImages.length) % currentProjectImages.length;
+            lightboxImg.src = currentProjectImages[currentImageIndex];
+        }
+
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-next').addEventListener('click', () => showImage(currentImageIndex + 1));
+        document.getElementById('lightbox-prev').addEventListener('click', () => showImage(currentImageIndex - 1));
+
+        window.addEventListener('keydown', (e) => {
+            if (!portfolioModal.classList.contains('hidden') && e.key === 'Escape') {
+                closeModal();
+            }
+            if (!lightbox.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
+                if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
+            }
+        });
+        portfolioModal.addEventListener('click', (e) => {
+            if (e.target === portfolioModal) closeModal();
+        });
+    </script>
+</body>
+</html>
